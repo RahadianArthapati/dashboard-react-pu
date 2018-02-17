@@ -16,18 +16,9 @@ function List ({
   updatePower,
   deletePower,
   onPageChange,
-  onDeleteItem,
   onEditItem,
   onStatusItem,
 }) {
-  const handleDeleteItem = (record) => {
-    confirm({
-      title: '您确定要删除这条记录吗?',
-      onOk () {
-        onDeleteItem(record.id)
-      },
-    })
-  }
 
   const handleMenuClick = (key, record) => {
     return {
@@ -37,35 +28,26 @@ function List ({
 
   const columns = [
     {
-      title: 'Name',
+      title: 'NAMA',
       dataIndex: 'name',
       key: 'name',
-      visibility: false
     },{
-      title: 'Phone',
-      dataIndex: 'phone',
-      key: 'phone',
-    }, {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
-    }, {
-      title: 'Role Name',
-      dataIndex: 'roleName',
-      key: 'roleName',
-    }, {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    }, {
-      title: 'Created Time',
-      dataIndex: 'createTime',
-      key: 'createTime',
-    }, {
-      title: 'Status',
+      title: 'NIP',
+      dataIndex: 'nip',
+      key: 'nip',
+    },{
+    title: 'GOLONGAN',
+    dataIndex: 'golongan',
+    key: 'golongan',
+    },{
+      title: 'UNIT KERJA',
+      dataIndex: 'unit_kerja',
+      key: 'unit_kerja',
+    },{
+      title: 'STATUS JAFUNG',
       dataIndex: 'status',
       key: 'status',
-      render: status => <span>{status ? '已启用' : '已禁用'}</span>,
+      //render: status => <span>{status ? '已启用' : '已禁用'}</span>,
     }, {
       title: '',
       key: 'action',

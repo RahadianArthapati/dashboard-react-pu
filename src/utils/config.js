@@ -1,9 +1,9 @@
 
 export default {
-  name: 'dva-admin',
+  name: 'pu-dashboard',
   prefix: '',
-  footerText: 'dva-admin 版权所有 © 2016 由 pmg1989 提供支持',
-  logoSrc: 'https://o9u2lnvze.qnssl.com/web/global/brand.png',
-  logoText: 'DVA Admin',
+  footerText: 'BINA MARGA © 2018',
+  logoSrc: 'http://haluannews.com/assets/gambar/haluannews_20170411083544.jpg',
+  logoText: '',
   needLogin: true,
 }

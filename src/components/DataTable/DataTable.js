@@ -67,9 +67,9 @@ class DataTable extends Component {
     let tableProps = {
       simple: true,
       bordered: true,
-      scroll: { x: 1200, y:300 },
+      scroll: { x: 1200 },
       onChange: this.handlePageChange,
-      pagination: !!pagination && { ...pagination, showSizeChanger: true, showQuickJumper: true, showTotal: total => `Total ${total}` },
+      pagination: !!pagination && { ...pagination},
       ...props,
     }
     if (animate) {

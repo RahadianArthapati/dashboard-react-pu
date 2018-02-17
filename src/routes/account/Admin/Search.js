@@ -14,7 +14,7 @@ const Search = ({
     title: 'Search',
     size: 'large',
     select: true,
-    selectOptions: [{ value: 'name', name: 'Nama' }, { value: 'nip', name: 'NIP' }],
+    selectOptions: [{ value: 'name', name: 'NAMA' }, { value: 'nip', name: 'NIP' }],
     selectProps: {
       defaultValue: field || 'name',
     },

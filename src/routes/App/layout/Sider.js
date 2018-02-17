@@ -27,8 +27,8 @@ function Sider ({ siderFold, darkTheme, location, changeTheme, navOpenKeys, user
       <QueueAnim delay={600} type="bottom">
         { !siderFold ?
           <div className={styles.switchtheme} key="1">
-            <span><Icon type="bulb" />切换主题</span>
-            <Switch onChange={changeTheme} defaultChecked={darkTheme} checkedChildren="黑" unCheckedChildren="白" />
+            <span><Icon type="bulb" />Switch theme</span>
+            <Switch onChange={changeTheme} defaultChecked={darkTheme} checkedChildren="Black" unCheckedChildren="White" />
           </div> : ''
         }
       </QueueAnim>

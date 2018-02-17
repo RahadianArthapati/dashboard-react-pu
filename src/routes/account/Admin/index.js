@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { checkPower } from 'utils'
-import { ADD, UPDATE, DELETE } from 'constants/options'
+import { ADD, UPDATE } from 'constants/options'
 import AdminList from './List'
 import AdminSearch from './Search'
 import AdminModal from './ModalForm'
@@ -12,7 +12,6 @@ const namespace = 'accountAdmin'
 function Admin ({ location, dispatch, curPowers, accountAdmin, modal, loading }) {
   const addPower = checkPower(ADD, curPowers)
   const updatePower = checkPower(UPDATE, curPowers)
-  const deletePower = checkPower(DELETE, curPowers)
 
   const { field, keyword } = location.query
 
@@ -38,18 +37,15 @@ function Admin ({ location, dispatch, curPowers, accountAdmin, modal, loading })
     accountAdmin,
     loading,
     updatePower,
-    deletePower,
     onPageChange (fieldsValue) {
       dispatch({
         type: `${namespace}/query`,
         payload: { ...fieldsValue },
       })
     },
-    onDeleteItem (id) {
-      dispatch({ type: 'accountAdmin/delete', payload: { id } })
-    },
     onEditItem (item) {
       console.log("Edit",item)
+      console.log("namespace",`${namespace}`)
       dispatch({
         type: `${namespace}/showModal`,
         payload: { type: 'update', curItem: item },

@@ -7,7 +7,7 @@ const menu = [
   {
     id: _.uniqueId(),
     key: 'dashboard',
-    name: '管理平台',
+    name: 'Dashboard',
     icon: 'laptop',
     power: [1, 2],
   },
@@ -15,37 +15,26 @@ const menu = [
   {
     id: _.uniqueId(),
     key: 'account',
-    name: '用户管理',
-    icon: 'user',
+    name: 'Module',
+    icon: 'appstore',
     clickable: false,
     power: [1],
     children: [
       {
         id: _.uniqueId(),
         key: 'admin',
-        name: '管理员',
-        power: [1, 2, 3, 4, 5],
-      },
-      {
-        id: _.uniqueId(),
-        key: 'role',
-        name: '管理员角色',
-        power: [1, 2, 3, 4, 5],
-      },
-      {
-        id: _.uniqueId(),
-        key: 'user',
-        name: '用户',
+        name: 'Data Jabatan Fungsional',
         power: [1, 2, 3, 4, 5],
       },
     ],
   },
+  /*
   // system
   {
     id: _.uniqueId(),
     key: 'system',
     name: '系统管理',
-    icon: 'appstore',
+    icon: 'user',
     clickable: false,
     power: [1],
     children: [
@@ -75,6 +64,7 @@ const menu = [
     ],
   },
   // 多级导航
+  
   {
     id: _.uniqueId(),
     key: 'navigation',
@@ -145,7 +135,7 @@ const menu = [
         power: [1, 2],
       },
     ],
-  },
+  },*/
 ]
 
 export default menu

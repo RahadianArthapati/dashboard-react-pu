@@ -59,7 +59,7 @@ function Bread ({ location }) {
       <Helmet><title>{title.join(' - ')}</title></Helmet>
       <Breadcrumb>
         <Breadcrumb.Item>
-          <Link to="/"><Icon type="home" /><span>主页</span></Link>
+          <Link to="/"><Icon type="home" /><span>Home</span></Link>
         </Breadcrumb.Item>
         {breads}
       </Breadcrumb>

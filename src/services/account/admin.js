@@ -1,6 +1,7 @@
 import { request } from 'utils'
 
 export async function query (params) {
+  console.log(params);
   return request('/api/admin', {
     method: 'get',
     data: params,

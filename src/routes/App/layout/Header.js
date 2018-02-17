@@ -31,11 +31,10 @@ function Header ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVi
           <Icon type={siderFold ? 'menu-unfold' : 'menu-fold'} />
         </div>}
       <div className={styles.right}>
-        <BadgeBox />
         <Menu className="header-menu" mode="horizontal" onClick={handleClickMenu} style={{ textAlign: 'center' }}>
           <SubMenu title={<span><Icon type="user" />{user.name}</span>}>
             <Menu.Item key="logout">
-              <a>注销</a>
+              <a>Log out</a>
             </Menu.Item>
           </SubMenu>
         </Menu>
