@@ -39,39 +39,10 @@ function List ({
 
   const columns = [
     {
-      title: 'Operation',
-      key: 'operation',
-      // width: 100,
-      render: (text, record) => (
-        <DropMenu>
-          <Menu onClick={({ key }) => handleMenuClick(key, record)}>
-            {updatePower && <Menu.Item key={STATUS}>{record.status ? '禁用' : '启用'}</Menu.Item>}
-            {updatePower && <Menu.Item key={UPDATE}>编辑</Menu.Item>}
-            {deletePower && <Menu.Item key={DELETE}>删除</Menu.Item>}
-          </Menu>
-        </DropMenu>
-      ),
-      // fixed: 'right'
-    },
-    {
-      title: 'Avatar',
-      dataIndex: 'avatar',
-      key: 'avatar',
-      width: 64,
-      className: styles.avatar,
-      render: text => <img width={24} src={text} alt={text} />,
-    }, {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-    }, {
-      title: 'isMale',
-      dataIndex: 'isMale',
-      key: 'isMale',
-      render: text => (<span>{text
-        ? '男'
-        : '女'}</span>),
-    }, {
+    },{
       title: 'Phone',
       dataIndex: 'phone',
       key: 'phone',
@@ -96,7 +67,22 @@ function List ({
       dataIndex: 'status',
       key: 'status',
       render: status => <span>{status ? '已启用' : '已禁用'}</span>,
+    }, {
+      title: 'Operation',
+      key: 'operation',
+      render: (text, record) => (
+        <DropMenu>
+          <Menu onClick={({ key }) => handleMenuClick(key, record)}>
+            {updatePower && <Menu.Item key={STATUS}>{record.status ? '禁用' : '启用'}</Menu.Item>}
+            {updatePower && <Menu.Item key={UPDATE}>编辑</Menu.Item>}
+            {deletePower && <Menu.Item key={DELETE}>删除</Menu.Item>}
+          </Menu>
+        </DropMenu>
+      ),
+      fixed: 'right',
+      width: 100
     }
+
   ]
 
   return (
