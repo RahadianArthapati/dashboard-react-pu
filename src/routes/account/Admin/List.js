@@ -32,8 +32,6 @@ function List ({
   const handleMenuClick = (key, record) => {
     return {
       [UPDATE]: onEditItem,
-      [STATUS]: onStatusItem,
-      [DELETE]: handleDeleteItem,
     }[key](record)
   }
 
@@ -42,6 +40,7 @@ function List ({
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+      visibility: false
     },{
       title: 'Phone',
       dataIndex: 'phone',
@@ -68,19 +67,17 @@ function List ({
       key: 'status',
       render: status => <span>{status ? '已启用' : '已禁用'}</span>,
     }, {
-      title: 'Operation',
-      key: 'operation',
+      title: '',
+      key: 'action',
       render: (text, record) => (
         <DropMenu>
           <Menu onClick={({ key }) => handleMenuClick(key, record)}>
-            {updatePower && <Menu.Item key={STATUS}>{record.status ? '禁用' : '启用'}</Menu.Item>}
-            {updatePower && <Menu.Item key={UPDATE}>编辑</Menu.Item>}
-            {deletePower && <Menu.Item key={DELETE}>删除</Menu.Item>}
+            {updatePower && <Menu.Item key={UPDATE}>Edit</Menu.Item>}
           </Menu>
         </DropMenu>
       ),
       fixed: 'right',
-      width: 100
+      width: 50
     }
 
   ]
@@ -102,10 +99,7 @@ List.propTypes = {
   loading: PropTypes.object.isRequired,
   accountAdmin: PropTypes.object.isRequired,
   updatePower: PropTypes.bool.isRequired,
-  deletePower: PropTypes.bool.isRequired,
   onPageChange: PropTypes.func.isRequired,
-  onStatusItem: PropTypes.func.isRequired,
-  onDeleteItem: PropTypes.func.isRequired,
   onEditItem: PropTypes.func.isRequired,
 }
 
