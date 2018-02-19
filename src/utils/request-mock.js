@@ -2,7 +2,7 @@ import axios from 'axios'
 import { message } from 'antd'
 import { stringify } from 'qs'
 
-// message 全局配置
+
 message.config({
   top: 50,
 })
@@ -37,7 +37,7 @@ function checkStatus (res) {
   throw error
 }
 
-function handelData (res) {
+function handleData (res) {
   const data = res.data
   if (data && data.msg && !data.success) {
     message.warning(data.msg)
@@ -63,7 +63,7 @@ export default function request (url, options) {
 
   return fetch(url, options)
     .then(checkStatus)
-    .then(handelData)
+    .then(handleData)
     .catch(handleError)
 }
 

@@ -13,7 +13,7 @@ function Login ({ dispatch, loading = false }) {
     },
   }
   return (
-    <div className={styles.spin}><Spin tip="加载用户信息..." spinning={loading} size="large"><LoginForm {...loginProps} /></Spin></div>
+    <div className={styles.spin}><Spin tip="Load user information..." spinning={loading} size="large"><LoginForm {...loginProps} /></Spin></div>
   )
 }
 

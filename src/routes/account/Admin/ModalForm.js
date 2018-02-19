@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { Form, Input, Radio, Modal, Icon, Select } from 'antd'
 import { InputAutoComplete } from 'components'
 import { validPhone } from 'utils/utilsValid'
+import { DataTable, DropMenu } from 'components'
+import { UPDATE, STATUS } from 'constants/options'
+import styles from './List.less'
 
 const FormItem = Form.Item
 
@@ -46,100 +49,104 @@ const ModalForm = ({
   }
 
   const modalFormOpts = {
-    title: type === 'create' ? <div><Icon type="plus-circle-o" /> 新建管理员</div> : <div><Icon type="edit" /> 修改管理员</div>,
+    title: type === 'create' ? <div><Icon type="plus-circle-o" /></div> : <div><Icon type="edit" /></div>,
     visible,
     wrapClassName: 'vertical-center-modal',
     confirmLoading: loading.effects['accountAdmin/showModal'],
     onOk: handleOk,
     onCancel,
     afterClose () {
-      resetFields() // 必须项，编辑后如未确认保存，关闭时必须重置数据
+      resetFields()
     },
   }
+  const handleMenuClick = (key, record) => {
+    return {
+      [UPDATE]: onEditItem,
+    }[key](record)
+  }
+  const columns = [
+    {
+      title: 'STATUS JAFUNG',
+      dataIndex: 'status',
+      key: 'status',
+    },{
+      title: 'JABATAN FUNGSIONAL',
+      dataIndex: 'jafung',
+      key: 'jafung',
+    },{
+    title: 'NOMOR SK',
+    dataIndex: 'no_sk',
+    key: 'no_sk',
+    },{
+      title: 'TANGGAL SK',
+      dataIndex: 'date_sk',
+      key: 'date_sk',
+    },{
+      title: 'TANGGAL MULAI',
+      dataIndex: 'date_start',
+      key: 'date_start',
+    },{
+      title: 'TANGGAL SELESAI',
+      dataIndex: 'date_end',
+      key: 'date_end',
+    }, {
+      title: '',
+      key: 'action',
+      render: (text, record) => (
+        <DropMenu>
+          <Menu onClick={({ key }) => handleMenuClick(key, record)}>
+            {updatePower && <Menu.Item key={UPDATE}>Upload</Menu.Item>}
+          </Menu>
+        </DropMenu>
+      ),
+      fixed: 'right',
+      width: 50
+    }
 
+  ]
   return (
     <Modal {...modalFormOpts}>
       <Form>
-        <FormItem label="用户名：" hasFeedback {...formItemLayout}>
+      <FormItem label="NIP ：" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('name', {
+            initialValue: curItem.nip,
+          })(<Input />)}
+        </FormItem>
+        <FormItem label="NAMA ：" hasFeedback {...formItemLayout}>
           {getFieldDecorator('name', {
             initialValue: curItem.name,
-            rules: [
-              {
-                required: true,
-                message: '用户名不能为空',
-              },
-            ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="性别" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('isMale', {
-            initialValue: curItem.isMale,
-            rules: [
-              {
-                required: true,
-                type: 'boolean',
-                message: '请选择性别',
-              },
-            ],
-          })(
-            <Radio.Group>
-              <Radio value>男</Radio>
-              <Radio value={false}>女</Radio>
-            </Radio.Group>
-          )}
+        <FormItem label="PENEMPATAN ：" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('name', {
+            initialValue: curItem.placement,
+          })(<Input />)}
         </FormItem>
-        <FormItem label="手机号：" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('phone', {
+        <FormItem label="UNIT KERJA ：" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('name', {
+            initialValue: curItem.unit_kerja,
+          })(<Input />)}
+        </FormItem>
+        <FormItem label="SATKER : " hasFeedback {...formItemLayout}>
+          {getFieldDecorator('name', {
+            initialValue: curItem.satker,
+          })(<Input />)}
+        </FormItem>
+        <FormItem label="PPK ：" hasFeedback {...formItemLayout}>
+          {getFieldDecorator('name', {
             initialValue: curItem.phone,
-            rules: [
-              {
-                required: true,
-                message: '手机号不能为空',
-              },
-              {
-                validator: validPhone,
-              },
-            ],
-          })(<Input />)}
-        </FormItem>
-        <FormItem label="邮箱：" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('email', {
-            initialValue: curItem.email,
-            rules: [
-              {
-                required: true,
-                message: '邮箱不能为空',
-              },
-              {
-                type: 'email',
-                message: '邮箱格式不正确',
-              },
-            ],
-          })(<InputAutoComplete />)}
-        </FormItem>
-        <FormItem label="角色：" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('roleId', {
-            initialValue: curItem.roleId && curItem.roleId.toString(),
-            rules: [
-              {
-                required: true,
-                message: '角色不能为空',
-              },
-            ],
-          })(<Select placeholder="--请选择角色--">{curItem.roleList.map(item => <Option key={item.id} value={item.id.toString()}>{item.name}</Option>)}</Select>)}
-        </FormItem>
-        <FormItem label="地区：" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('address', {
-            initialValue: curItem.address,
-            rules: [
-              {
-                required: true,
-                message: '地区不能为空',
-              },
-            ],
           })(<Input />)}
         </FormItem>
       </Form>
+      <DataTable
+      className={styles.table}
+      columns={columns}
+      dataSource={""}
+      loading={loading.effects['accountAdmin/query']}
+      pagination={""}
+      onPageChange={""}
+      rowKey={record => record.id}
+    />
     </Modal>
   )
 }

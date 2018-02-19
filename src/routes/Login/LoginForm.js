@@ -40,24 +40,24 @@ const Login = ({
               rules: [
                 {
                   required: true,
-                  message: '请填写用户名',
+                  message: 'Please enter your username',
                 },
               ],
-            })(<Input size="large" placeholder="用户名" />)}
+            })(<Input size="large" placeholder="username" />)}
           </FormItem>
           <FormItem hasFeedback key="2">
             {getFieldDecorator('password', {
               rules: [
                 {
                   required: true,
-                  message: '请填写密码',
+                  message: 'Please fill in the password',
                 },
               ],
-            })(<Input size="large" type="password" placeholder="密码" />)}
+            })(<Input size="large" type="password" placeholder="password" />)}
           </FormItem>
           <FormItem key="3">
             <Button type="primary" htmlType="submit" size="large" loading={loading}>
-              登录
+              Login
             </Button>
           </FormItem>
         </QueueAnim>
