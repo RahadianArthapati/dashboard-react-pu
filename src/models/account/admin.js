@@ -34,7 +34,9 @@ export default {
       const { searchQuery } = yield select(({ accountAdmin }) => accountAdmin)
       const querys = renderQuery(searchQuery, payload)
       const data = yield call(query, querys)
+      console.log("DATA : ",data)
       if (data.success) {
+        console.log("DATA SUCCESS")
         yield put({
           type: 'querySuccess',
           payload: {
@@ -43,6 +45,8 @@ export default {
             pagination: data.page,
           },
         })
+      }else{
+        console.log("DATA FAILED")
       }
     },
     * delete ({ payload }, { call, put }) {

@@ -69,7 +69,7 @@ function List ({
       className={styles.table}
       columns={columns}
       dataSource={list}
-      loading={loading.effects['accountAdmin/query']}
+      loading={loading.effects['query']}
       pagination={pagination}
       onPageChange={onPageChange}
       rowKey={record => record.id}

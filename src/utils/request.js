@@ -8,8 +8,9 @@ message.config({
   top: 50,
 })
 
-axios.defaults.baseURL = newband.app.admin.API_HOST
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+//axios.defaults.baseURL = newband.app.admin.API_HOST
+axios.defaults.baseURL = 'http://127.0.0.1:3000/api/v1/'
+axios.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8'
 // axios.defaults.headers.common['Authorization'] = sessionStorage.getItem('Authorization')
 
 const fetch = (url, options) => {

@@ -2,7 +2,13 @@ import { request } from 'utils'
 
 export async function query (params) {
   console.log(params);
+  /*
   return request('/api/admin', {
+    method: 'get',
+    data: params,
+  })*/
+  //return request('/api/admin', {
+  return request('http://127.0.0.1:3000/api/v1/employees/', {
     method: 'get',
     data: params,
   })
