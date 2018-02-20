@@ -15,7 +15,8 @@ export async function query (params) {
 }
 
 export async function get (params) {
-  return request('/api/adminItem', {
+  //return request('/api/adminItem', {
+    return request('http://127.0.0.1:3000/api/v1/employees/', {
     method: 'get',
     data: params,
   })

@@ -72,6 +72,7 @@ function List ({
       loading={loading.effects['query']}
       pagination={pagination}
       onPageChange={onPageChange}
+      locale={{emptyText: 'No Data'}}
       rowKey={record => record.id}
     />
   )

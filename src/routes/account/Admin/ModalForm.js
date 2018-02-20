@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Input, Radio, Modal, Icon, Select } from 'antd'
 import { InputAutoComplete } from 'components'
-import { validPhone } from 'utils/utilsValid'
 import { DataTable, DropMenu } from 'components'
 import { UPDATE, STATUS } from 'constants/options'
 import styles from './List.less'
@@ -30,10 +29,13 @@ const ModalForm = ({
   },
   onOk,
   onCancel,
+
 }) => {
+  console.log("CURITEM", curItem);
+  /*
   if (!curItem.roleList) {
     curItem.roleList = []
-  }
+  }*/
 
   const handleOk = () => {
     validateFields((errors, values) => {
@@ -55,6 +57,8 @@ const ModalForm = ({
     confirmLoading: loading.effects['accountAdmin/showModal'],
     onOk: handleOk,
     onCancel,
+    okText: 'OK',
+    cancelText: 'Cancel',
     afterClose () {
       resetFields()
     },
@@ -137,16 +141,18 @@ const ModalForm = ({
             initialValue: curItem.phone,
           })(<Input />)}
         </FormItem>
-      </Form>
-      <DataTable
+        <DataTable
       className={styles.table}
       columns={columns}
-      dataSource={""}
+      dataSource={[]}
       loading={loading.effects['accountAdmin/query']}
       pagination={""}
       onPageChange={""}
+      locale={{emptyText: 'No Data'}}
       rowKey={record => record.id}
     />
+      </Form>
+
     </Modal>
   )
 }

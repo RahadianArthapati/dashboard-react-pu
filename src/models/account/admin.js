@@ -45,8 +45,6 @@ export default {
             pagination: data.page,
           },
         })
-      }else{
-        console.log("DATA FAILED")
       }
     },
     * delete ({ payload }, { call, put }) {
@@ -86,19 +84,22 @@ export default {
       let newData = { curItem: {} }
 
       yield put({ type: 'modal/showModal', payload: { type } })
-
+      console.log("MODAL CURITEM : ",curItem)
       if (curItem) {
         const dataGet = yield call(get, { id: curItem.id })
+        console.log("MODAL CURITEM DATA GET : ",dataGet);
         if (dataGet && dataGet.success) {
-          newData.curItem = dataGet.data
+          newData.curItem = dataGet.data[0]
+          console.log("MODAL CURITEM DATA SUCCESS", newData.curItem);
         }
       }
-
+      /*
       const dataRole = yield call(queryRole)
       if (dataRole && dataRole.success) {
         newData.curItem.roleList = dataRole.list
-      }
+      }*/
       yield put({ type: 'modal/setItem', payload: newData })
+      
     },
   },
 
